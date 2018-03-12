@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: api-gateway
+
+server:
+  port: 3005
+  
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceURL:
+      defaultZone: http://localhost:8761/eureka
+    instance:
+      hostname: localhost
+     
+zuul:
+  prefix: /api
+  routes:
+    db-service: 
+      path: /db-service/**
+      url: http://db-service
+    stock-service:
+      path: /stock-service/**
+      url: http://stock-service
